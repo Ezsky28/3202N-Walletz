@@ -17,7 +17,7 @@ function LoginPage() {
           <Form>
             <FloatingLabel controlId='formEmail' label="Email" className='login-inputs'>
               <Form.Control type='email' placeholder='Email'/>
-             </FloatingLabel>
+            </FloatingLabel>
             <FloatingLabel controlId='formPassword' label="Password" className='login-inputs'>
               <Form.Control type='password' placeholder='Password'/>
             </FloatingLabel>

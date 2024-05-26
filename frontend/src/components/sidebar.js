@@ -1,12 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import logo from '../assets/logo.png'
 
 function Sidebar() {
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3 bg-light" style={{ width: '280px', height: '100vh' }}>
         <a href="/dashboard" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            <span className="fs-4">Walletz</span>
+            <img src={logo} alt='walletz logo' className='login-logo'></img><span className="fs-4">WALLETZ</span>
         </a>
         <hr />
         <ul className="nav nav-pills flex-column mb-auto">

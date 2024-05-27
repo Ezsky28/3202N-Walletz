@@ -19,8 +19,8 @@ function DashPage() {
                 <NavBar />
                 <Container fluid className="flex-grow-1 d-flex flex-column justify-content-center align-items-center p-0">
                     <Row className="w-100 justify-content-center">
-                        <Col xs={12} md={8} lg={6} xl={4} className="text-center">
-                            <div className="p-3 w-100 h-100 shadow border-3 rounded-3">
+                        <Col xs={12} md={8} lg={6} xl={4} className="d-flex flex-column justify-content-center align-items-center">
+                            <div className="p-3 w-100 h-100 shadow border-3 rounded-3 text-center">
                                 <h1>Dashboard</h1>
                                 <p>This is the main content area.</p>
                             </div>

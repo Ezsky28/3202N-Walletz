@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'
 import './calendar.css';
 
-const Calendar = () => {
+const Calendar = ({ selectedDate, setSelectedDate }) => {
   const [date, setDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const months = [
@@ -66,8 +64,8 @@ const Calendar = () => {
   };
 
   useEffect(() => {
-    setSelectedDate(new Date()); 
-  }, []);
+    setSelectedDate(new Date());
+  }, [setSelectedDate]);
 
   return (
     <Container className="calendar-container">
@@ -92,7 +90,6 @@ const Calendar = () => {
       {generateCalendar()}
       <Row className="selected-date-container">
         <Col className="selected-date-text">
-          {selectedDate ? `Selected Date: ${selectedDate.toDateString()}` : 'No Date Selected'}
         </Col>
       </Row>
     </Container>

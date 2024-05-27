@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import SideNav from '../components/sidenav';
 import NavBar from '../components/navbar';
+import Calendar from '../components/calendar'
 import { Container, Row, Col} from 'react-bootstrap';
 
 
@@ -19,9 +20,8 @@ function WalletPage() {
                 <Container fluid className="flex-grow-1 d-flex flex-column justify-content-center align-items-center p-0">
                     <Row className="w-100 justify-content-center">
                         <Col xs={12} md={8} lg={6} xl={4} className="text-center">
-                            <div className="p-3 w-100 h-100 shadow border-3 rounded-3">
-                                <h1>Wallet</h1>
-                                <p>This is the main content area.</p>
+                            <div className="shadow border-3 rounded-3">
+                                <Calendar/>
                             </div>
                         </Col>
                     </Row>

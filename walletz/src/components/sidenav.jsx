@@ -19,10 +19,10 @@ function SideNav({actives}) {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <Link exact to="/dashboard" activeClassName="activeClicked">
+            <Link exact to="/dashboard">
               <CDBSidebarMenuItem active={actives.active1} icon="columns">Dashboard</CDBSidebarMenuItem>
             </Link>
-            <Link exact to="/wallet" activeClassName="activeClicked">
+            <Link exact to="/wallet">
               <CDBSidebarMenuItem active={actives.active2} icon="wallet" >Wallet</CDBSidebarMenuItem>
             </Link>
           </CDBSidebarMenu>

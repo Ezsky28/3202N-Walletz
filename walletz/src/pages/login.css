@@ -46,6 +46,7 @@ p{
 
 .login-button{
   background-color: #355173;
+  border: none;
   outline: none;
   width: 220px;
   height: 45px;

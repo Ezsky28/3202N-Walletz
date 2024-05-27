@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
-import './calendar.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './calendar.css';
 
 const Calendar = () => {
   const [date, setDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const months = [
@@ -65,6 +65,10 @@ const Calendar = () => {
     setDate(new Date(date.getFullYear(), date.getMonth() + 1, 1));
   };
 
+  useEffect(() => {
+    setSelectedDate(new Date()); 
+  }, []);
+
   return (
     <Container className="calendar-container">
       <Row className="calendar-header">
@@ -86,7 +90,11 @@ const Calendar = () => {
         ))}
       </Row>
       {generateCalendar()}
-      <p>{selectedDate ? `Selected Date: ${selectedDate.toDateString()}` : 'No Date Selected'}</p>
+      <Row className="selected-date-container">
+        <Col className="selected-date-text">
+          {selectedDate ? `Selected Date: ${selectedDate.toDateString()}` : 'No Date Selected'}
+        </Col>
+      </Row>
     </Container>
   );
 };

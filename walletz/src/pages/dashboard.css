@@ -1,9 +1,9 @@
 .dash-container {
     display: flex;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; 
 }
 
 .main-content {
-    flex-grow: 1; /* Take up the remaining space */
-    background-color: #000000; /* Light gray background for contrast */
+    flex-grow: 1;
+    background-color: #000000;
 }

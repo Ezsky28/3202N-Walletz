@@ -34,6 +34,28 @@ function LoginPage() {
       }
     }
 
+
+
+    async function loginUser(e) {
+    e.preventDefault()
+    const { email, password } = data
+    try {
+      const { data } = await axios.post('/login', {
+        email,
+        password
+      })
+
+      if (data.error) {
+        toast.error(data.error)
+      } else {
+        setData({})
+        navigate('/dashboard')
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
     return(
       <Container fluid className='login-container'>
         <Row className='justify-content-center'>

@@ -28,7 +28,7 @@ function RegiserPage() {
             </div>
             <Form onSubmit={registerUser}>
               <FloatingLabel controlId='formEmail' label="Email" className='register-inputs'>
-                <Form.Control type='email' placeholder='Email' value={data.email} onChange={(e) => setData({...data, name: e.target.value})}/>
+                <Form.Control type='email' placeholder='Email' value={data.email} onChange={(e) => setData({...data, email: e.target.value})}/>
               </FloatingLabel>
               <FloatingLabel controlId='formPassword' label="Password" className='register-inputs'>
                 <Form.Control type='password' placeholder='Password' value={data.password} onChange={(e) => setData({...data, password: e.target.value})}/>

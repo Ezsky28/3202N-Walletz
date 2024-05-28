@@ -1,0 +1,79 @@
+/* General layout styles */
+.vh-100 {
+    height: 100vh;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+/* Wallet card styles */
+.wallet-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-section {
+    border-right: 1px solid #dee2e6;
+    padding-right: 15px;
+}
+
+.transactions-section {
+    padding-left: 15px;
+}
+
+.add-transaction-btn {
+    width: 100%;
+}
+
+/* Transaction table styles */
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+/* Wallet balance styles */
+.wallet-balance {
+    font-weight: bold;
+    color: #28a745;
+}
+
+/* Scrollable content */
+.scrollable-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px; /* To ensure scrollbar doesn't overlap content */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .calendar-section {
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+        padding-right: 0;
+        padding-bottom: 15px;
+    }
+
+    .transactions-section {
+        padding-left: 0;
+    }
+}

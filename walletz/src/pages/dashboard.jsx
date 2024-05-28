@@ -3,7 +3,7 @@ import SideNav from '../components/sidenav';
 import NavBar from '../components/navbar';
 import axios from 'axios'
 import {useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect} from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import './dashboard.css'; // Import the CSS file
 
@@ -14,6 +14,16 @@ function DashPage() {
         active2: false,
     };
 
+    useEffect(() => {
+        const hasReloaded = localStorage.getItem('hasReloaded');
+        if (!hasReloaded) {
+          const timer = setTimeout(() => {
+            localStorage.setItem('hasReloaded', 'true');
+            window.location.reload();
+          }, 0);
+          return () => clearTimeout(timer);
+        }
+      }, []);
 
     useEffect(() => {
         axios.get('/verifyuser')

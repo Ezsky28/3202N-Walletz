@@ -3,18 +3,23 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {CDBSidebar, CDBSidebarContent, CDBSidebarMenu, CDBSidebarMenuItem,CDBSidebarFooter,CDBSidebarHeader, CDBIcon} from 'cdbreact'
 import { Link } from 'react-router-dom'
 import logout from '../assets/logout.png'
-
-
-
+import { useContext } from 'react'
+import { UserContext } from '../context/userContext'
 
 function SideNav({actives}) {
+    const {user} = useContext(UserContext)
+
+    const handleLogout = () => {
+      localStorage.removeItem('hasReloaded');
+    };
+    
     return(
         <div
       style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}
     >
       <CDBSidebar textColor="#fff" backgroundColor="#355173">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-            <CDBIcon icon='user'>sample@gmail.com</CDBIcon>
+            <CDBIcon icon='user'>{!!user && (user.user.email)}</CDBIcon>
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
@@ -29,7 +34,7 @@ function SideNav({actives}) {
         </CDBSidebarContent>
 
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
-            <Button style={{backgroundColor:'transparent', border:'none'}}><img src={logout} alt='walletz logo' className='login-logo' style={{width:'20px', height:'30px'}}></img><p style={{fontWeight:'medium', color:'white'}}>Logout</p></Button>
+            <Button onClick={handleLogout} style={{backgroundColor:'transparent', border:'none'}}><img src={logout} alt='walletz logo' className='login-logo' style={{width:'20px', height:'30px'}}></img><p style={{fontWeight:'medium', color:'white'}}>Logout</p></Button>
         </CDBSidebarFooter>
       </CDBSidebar>
     </div>

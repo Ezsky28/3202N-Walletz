@@ -28,7 +28,7 @@ const renewToken = (req, res) => {
             if(err) {
                 return res.json({valid: false})
             } else {
-                const accessToken = jwt.sign({email: decoded.user}, 
+                const accessToken = jwt.sign({user: decoded.user}, 
                     "jwt-access-token-secret-key", {expiresIn: '1m'})
                 res.cookie('accessToken', accessToken, {maxAge: 60000})
                 exist = true;

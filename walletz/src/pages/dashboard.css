@@ -115,3 +115,39 @@
 .min-max-value span {
     font-weight: bold;
 }
+
+/* Scrollable content */
+.scrollable-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px; /* To ensure scrollbar doesn't overlap content */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .box {
+        padding: 10px;
+    }
+
+    .transaction-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .transaction-details {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .transaction {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .min-max-item,
+    .min-max-value {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

@@ -6,9 +6,6 @@ import logo from '../assets/logo.png'
 import { useState } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import { useState } from 'react'
-import axios from 'axios'
-import toast from 'react-hot-toast'
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -29,32 +26,6 @@ function LoginPage() {
         if(data.error){
           toast.error(data.error)
         } else if(data.Login){
-          setData({});
-          navigate('/dashboard')
-        }
-      } catch (error){
-        console.log(error)
-      }
-    }
-
-    const navigate = useNavigate();
-    const [data, setData] = useState({
-      email: '',
-      password: '',
-    })
-
-    const loginUser = async (e) =>{
-      e.preventDefault();
-      const {email, password} = data
-      try {
-        const {data} = await axios.post('/login', {
-          email,
-          password
-        })
-
-        if(data.error){
-          toast.error(data.error)
-        } else{
           setData({});
           navigate('/dashboard')
         }

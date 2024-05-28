@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const jwt = require('jsonwebtoken')
 const test = (req, res) => {
     res.json('Ni gana ra migo finally')
 }
@@ -49,21 +50,49 @@ const loginUser = async (req, res) => {
             })
         }
 
-        if(password != user.password){
-            return res.json({
-                error: 'Invalid password'
-            })
-        }else{
-            return res.json('Success')
-        }
+        if(password === user.password){
+                const accessToken = jwt.sign({user}, 
+                    "jwt-access-token-secret-key", {expiresIn: '1m'})
+                const refreshToken = jwt.sign({user}, 
+                    "jwt-refresh-token-secret-key", {expiresIn: '5m'})
 
-    } catch(error){
-        console.log(error)
+                res.cookie('accessToken', accessToken, {maxAge: 60000})
+
+                res.cookie('refreshToken', refreshToken, 
+                    {maxAge: 300000, httpOnly: true, secure: true, sameSite: 'strict'})
+                return res.json({Login: true})
+            }else{
+                return res.json({
+                    error: 'Invalid password'
+                })
+            }
+        } catch(error){
+            console.log(error)
     }
 }
+
+const verify = (req, res) => {
+    return res.json({valid: true})
+}
+
+const getProfile = (req, res) => {
+    const accesstoken = req.cookies.accessToken;
+    if(accesstoken) {
+        jwt.verify(accesstoken, 'jwt-access-token-secret-key', {},(err ,decoded) => {
+            if(err) throw err;
+            res.json(decoded)
+        })
+    }else{
+        res.json(null)
+    }
+}
+
+
 
 module.exports = {
     test,
     registerUser,
-    loginUser
+    loginUser,
+    verify,
+    getProfile
 }

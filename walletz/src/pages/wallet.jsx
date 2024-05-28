@@ -55,7 +55,7 @@ function WalletPage() {
                       </Button>
                     </Col>
                     <Col xs={12} md={6} className="transactions-section">
-                      <h5 className="text-center">January 21, 2022</h5>
+                      <h5 className="text-center">{selectedDate.toDateString()}</h5>
                       <Table bordered hover className="mt-3">
                         <thead>
                           <tr>

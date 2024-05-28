@@ -10,6 +10,13 @@ import { UserContextProvider } from './context/userContext';
 
 axios.defaults.baseURL = "http://localhost:8000"
 axios.defaults.withCredentials = true
+import DashPage from './pages/dashboard';
+import WalletPage from './pages/wallet';
+import axios from 'axios'
+import {Toaster} from 'react-hot-toast'
+
+axios.defaults.baseURL = "http://localhost:8000"
+axios.defaults.withCredentials = true
 
 function App() {
   return (

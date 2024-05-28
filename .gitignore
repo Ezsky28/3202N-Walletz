@@ -43,9 +43,6 @@ bower_components/
 # TypeScript v1 declaration files
 typings/
 
-# Environment variables
-.env
-
 # MacOS files
 .DS_Store
 

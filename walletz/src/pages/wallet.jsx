@@ -1,17 +1,31 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import SideNav from '../components/sidenav';
 import NavBar from '../components/navbar';
 import Calendar from '../components/calendar';
+import axios from 'axios'
+import {useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap';
 
 function WalletPage() {
+    const navigate = useNavigate();
     const [selectedDate, setSelectedDate] = useState(new Date());
 
     const navStatus = {
         active1: false,
         active2: true,
     };
+
+    useEffect(() => {
+        axios.get('/verifyuser')
+        .then(res => {
+            console.log(res)
+            if(!res.data.valid) {
+                navigate('/')
+            } 
+         })
+        .catch(err => console.log(err))
+    })
 
     return (
         <div className="d-flex vh-100">

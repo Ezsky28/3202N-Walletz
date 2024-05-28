@@ -25,7 +25,7 @@ function LoginPage() {
 
         if(data.error){
           toast.error(data.error)
-        } else{
+        } else if(data.Login){
           setData({});
           navigate('/dashboard')
         }

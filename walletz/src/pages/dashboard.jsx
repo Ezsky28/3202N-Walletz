@@ -1,16 +1,32 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import SideNav from '../components/sidenav';
 import NavBar from '../components/navbar';
+import axios from 'axios'
+import {useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import { Container, Row, Col} from 'react-bootstrap';
 
 
 
 function DashPage() {
+    const navigate = useNavigate();
     const navStatus = {
         active1: true,
         active2: false,
     };
-    return(
+
+    useEffect(() => {
+        axios.get('/verifyuser')
+        .then(res => {
+            console.log(res)
+            if(!res.data.valid) {
+                navigate('/')
+            } 
+         })
+        .catch(err => console.log(err))
+    })
+
+    return( 
         <div className="d-flex vh-100">
             <div className="flex-shrink-0">
                 <SideNav actives={navStatus} />

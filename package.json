@@ -4,8 +4,8 @@
     "private": true,
     "scripts": {
         "start": "concurrently \"npm run server\" \"npm run client\"",
-        "server": "cd backend && node server.js",
-        "client": "cd frontend && npm start"
+        "server": "cd server && node index.js",
+        "client": "cd walletz && npm start"
     },
   "devDependencies": {
     "concurrently": "^8.2.2"

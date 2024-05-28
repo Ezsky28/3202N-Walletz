@@ -1,0 +1,153 @@
+.container {
+    padding: 20px;
+}
+
+.box {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.box h3 {
+    margin-bottom: 15px;
+}
+
+.transaction-card {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-icon {
+    font-size: 24px;
+    color: #007bff;
+    margin-right: 10px;
+}
+
+.transaction-details {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.transaction:last-child {
+    border-bottom: none;
+}
+
+.transaction-name {
+    font-weight: bold;
+}
+
+.transaction-amount {
+    font-weight: bold;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.text-success {
+    color: #28a745;
+}
+
+.recent-transactions .transaction {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.min-max .transaction {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.min-max-box {
+    background-color: white;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.min-max-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.min-max-label {
+    font-weight: bold;
+}
+
+.min-max-title {
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.min-max-value {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 0;
+    border-top: 1px solid #eaeaea;
+}
+
+.min-max-value span {
+    font-weight: bold;
+}
+
+/* Scrollable content */
+.scrollable-content {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px; /* To ensure scrollbar doesn't overlap content */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .box {
+        padding: 10px;
+    }
+
+    .transaction-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .transaction-details {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .transaction {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .min-max-item,
+    .min-max-value {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

@@ -1,8 +1,15 @@
 const express = require('express');
-const dotenv = require('dotenv').config;
-const cors =  require('cors');
-
+const dotenv = require('dotenv').config()
+const cors =  require('cors')
+const {mongoose} = require('mongoose')
 const app = express();
+
+
+mongoose.connect(process.env.MONGO_URL)
+.then(() => console.log('Ka connect nakas mongoDB gois')).catch((err) => console.log('Malasa nimo migo wa ka ka connect', err))
+
+//middleware
+app.use(express.json())
 
 app.use('/', require('./routes/routes'))
 

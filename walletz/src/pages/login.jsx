@@ -1,21 +1,37 @@
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Button, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap'
 import './login.css'
 import logo from '../assets/logo.png'
 import { useState } from 'react'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 function LoginPage() {
-
+    const navigate = useNavigate();
     const [data, setData] = useState({
       email: '',
       password: '',
     })
 
-    const loginUser = (e) =>{
-      e.preventDefault()
-      axios.get('')
+    const loginUser = async (e) =>{
+      e.preventDefault();
+      const {email, password} = data
+      try {
+        const {data} = await axios.post('/login', {
+          email,
+          password
+        })
+
+        if(data.error){
+          toast.error(data.error)
+        } else{
+          setData({});
+          navigate('/dashboard')
+        }
+      } catch (error){
+        console.log(error)
+      }
     }
 
     return(
@@ -29,10 +45,10 @@ function LoginPage() {
             </div>
             <Form onSubmit={loginUser}>
               <FloatingLabel controlId='formEmail' label="Email" className='login-inputs'>
-                <Form.Control type='email' placeholder='Email' value={data.email} onChange={(e) => setData({...data, email: e.target.value})}/>
+                <Form.Control required type='email' placeholder='Email' value={data.email} onChange={(e) => setData({...data, email: e.target.value})}/>
               </FloatingLabel>
               <FloatingLabel controlId='formPassword' label="Password" className='login-inputs'>
-                <Form.Control type='password' placeholder='Password' value={data.password} onChange={(e) => setData({...data, password: e.target.value})}/>
+                <Form.Control required type='password' placeholder='Password' value={data.password} onChange={(e) => setData({...data, password: e.target.value})}/>
               </FloatingLabel>
               <Button variant="primary" type="submit" className='login-button'>
                 Login

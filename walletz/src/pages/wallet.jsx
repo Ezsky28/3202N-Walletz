@@ -1,17 +1,47 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './wallet.css'; // Import the CSS file
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import SideNav from '../components/sidenav';
 import NavBar from '../components/navbar';
 import Calendar from '../components/calendar';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Table, Button, Modal, Form } from 'react-bootstrap';
+import { UserContext } from '../context/userContext'
+import toast from 'react-hot-toast';
 
 function WalletPage() {
   const navigate = useNavigate();
+  const {user} = useContext(UserContext)
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showModal, setShowModal] = useState(false);
+  const [data, setData] = useState({
+    userID: user?.user._id ||'',
+    tranType: '',
+    description:'',
+    ammount: '',
+    tranDate: selectedDate.toDateString()
+  })
+
+  const addTransaction = async (e) => {
+    e.preventDefault();
+    const {userID, tranType, description, ammount, tranDate} = data
+    try {
+      const {data} = await axios.post('/addtransact', {
+        userID, tranType, description, ammount, tranDate
+      })
+      if(data.error){
+        toast.error(data.error)
+        handleCloseModal()
+      } else{
+        setData({});
+        toast.success('added')
+        handleCloseModal()
+      }
+    } catch (error){
+      console.log(error)
+    }
+  }
 
   const transactions = [
     { description: 'Snacks', amount: -500, type: 'expense' },
@@ -36,6 +66,13 @@ function WalletPage() {
       })
       .catch(err => console.log(err));
   }, [navigate]);
+
+  useEffect(() => {
+    setData(prevData => ({
+      ...prevData,
+      tranDate: selectedDate.toDateString()
+    }));
+  }, [selectedDate]);
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -103,32 +140,27 @@ function WalletPage() {
           <Modal.Title>Add Transaction</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={addTransaction}>
             <Form.Group className="mb-3" controlId="formTransactionDescription">
               <Form.Label>Description</Form.Label>
-              <Form.Control type="text" placeholder="Enter description" />
+              <Form.Control type="text" placeholder="Enter description" value={data.description} onChange={(e) => setData({...data, description: e.target.value})}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formTransactionAmount">
               <Form.Label>Amount</Form.Label>
-              <Form.Control type="number" placeholder="Enter amount" />
+              <Form.Control type="number" placeholder="Enter amount" value={data.ammount} onChange={(e) => setData({...data, ammount: e.target.value})}/>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formTransactionType">
               <Form.Label>Type</Form.Label>
-              <Form.Control as="select">
+              <Form.Control as="select" value={data.tranType} onChange={(e) => setData({...data, tranType: e.target.value})}>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
               </Form.Control>
             </Form.Group>
+            <Button variant="primary" type="submit">
+            Add
+          </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleCloseModal}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );

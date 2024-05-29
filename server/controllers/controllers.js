@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const tranModel = require('../models/transaction')
 const jwt = require('jsonwebtoken')
 const test = (req, res) => {
     res.json('Ni gana ra migo finally')
@@ -87,6 +88,19 @@ const getProfile = (req, res) => {
     }
 }
 
+const postTransaction = async(req, res) => {
+    try {
+        const {userID, tranType, description, ammount, tranDate} = req.body;
+        const transaction = await tranModel.create({
+            userID, tranType, description, ammount, tranDate
+        })
+        return res.json(transaction);
+    } catch(error) {
+        console.log(error)
+    }
+}
+
+
 
 
 module.exports = {
@@ -94,5 +108,6 @@ module.exports = {
     registerUser,
     loginUser,
     verify,
-    getProfile
+    getProfile,
+    postTransaction
 }

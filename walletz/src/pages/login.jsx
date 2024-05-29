@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {Button, Col, Container, FloatingLabel, Form, Row } from 'react-bootstrap'
 import './login.css'
 import logo from '../assets/logo.png'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
@@ -13,6 +13,13 @@ function LoginPage() {
       email: '',
       password: '',
     })
+
+    useEffect(() => {
+      const hasReloaded = localStorage.getItem('hasReloaded');
+      if (hasReloaded) {
+        localStorage.removeItem('hasReloaded');
+      }
+    }, []);
 
     const loginUser = async (e) =>{
       e.preventDefault();
@@ -45,7 +52,7 @@ function LoginPage() {
             </div>
             <Form onSubmit={loginUser}>
               <FloatingLabel controlId='formEmail' label="Email" className='login-inputs'>
-                <Form.Control required type='email' placeholder='Email' value={data.email} onChange={(e) => setData({...data, email: e.target.value})}/>
+                <Form.Control required type='email' placeholder='Email' autoComplete='off' value={data.email} onChange={(e) => setData({...data, email: e.target.value})}/>
               </FloatingLabel>
               <FloatingLabel controlId='formPassword' label="Password" className='login-inputs'>
                 <Form.Control required type='password' placeholder='Password' value={data.password} onChange={(e) => setData({...data, password: e.target.value})}/>

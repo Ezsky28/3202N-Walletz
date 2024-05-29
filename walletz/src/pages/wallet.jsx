@@ -21,7 +21,7 @@ function WalletPage() {
   const [transactionToEdit, setTransactionToEdit] = useState(null);
   const [data, setData] = useState({
     userID: user?.user._id || '',
-    tranType: '',
+    tranType: 'savings',
     description: '',
     amount: '',
     tranDate: selectedDate.toDateString(),
@@ -36,7 +36,6 @@ function WalletPage() {
         toast.error(data.error);
         handleCloseAddModal();
       } else {
-        setData({});
         toast.success('Transaction added');
         handleCloseAddModal();
       }
@@ -197,7 +196,7 @@ function WalletPage() {
             <Form.Group className="mb-3" controlId="formTransactionType">
               <Form.Label>Type</Form.Label>
               <Form.Control as="select" value={data.tranType} onChange={(e) => setData({ ...data, tranType: e.target.value })}>
-                <option value="income">Income</option>
+                <option value="savings">Savings</option>
                 <option value="expense">Expense</option>
               </Form.Control>
             </Form.Group>
@@ -225,7 +224,7 @@ function WalletPage() {
             <Form.Group className="mb-3" controlId="formTransactionType">
               <Form.Label>Type</Form.Label>
               <Form.Control as="select" value={data.tranType} onChange={(e) => setData({ ...data, tranType: e.target.value })}>
-                <option value="income">Income</option>
+                <option value="savings">Savings</option>
                 <option value="expense">Expense</option>
               </Form.Control>
             </Form.Group>

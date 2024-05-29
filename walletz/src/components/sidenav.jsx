@@ -2,21 +2,26 @@ import { useState, useContext } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CDBSidebar, CDBSidebarContent, CDBSidebarMenu, CDBSidebarMenuItem, CDBSidebarFooter, CDBSidebarHeader, CDBIcon } from 'cdbreact';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import logout from '../assets/logout.png';
 import { UserContext } from '../context/userContext';
+import Cookies from 'universal-cookie'
 
 function SideNav({ actives }) {
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
+  const cookies = new Cookies()
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+
   const handleLogout = () => {
+    cookies.remove("accessToken");
+    cookies.remove("refreshToken");
     localStorage.removeItem('hasReloaded');
-    // Add any additional logout logic here
-    handleCloseModal();
+    navigate('/');
   };
 
   return (

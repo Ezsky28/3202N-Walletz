@@ -31,3 +31,8 @@
  
 
 ## Note: There is no limitation on the tech stacks that you can use. Feel free to use any technology you prefer.
+
+## MEMBER:
+- Carl Dave Barrera
+- Ian Lemeul Caballes
+- Rolan Dave Pacampara
